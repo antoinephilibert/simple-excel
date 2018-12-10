@@ -18,13 +18,13 @@ package bad.robot.excel.style;
 
 import bad.robot.excel.AbstractValueType;
 
-public class FontColour extends AbstractValueType<Colour> {
+public class FontColour extends AbstractValueType<Color> {
 
-    public static FontColour fontColour(Colour value) {
+    public static FontColour fontColour(Color value) {
         return new FontColour(value);
     }
 
-    private FontColour(Colour value) {
+    private FontColour(Color value) {
         super(value);
     }
 }

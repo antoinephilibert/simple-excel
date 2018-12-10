@@ -28,14 +28,14 @@ import java.io.IOException;
 import static bad.robot.excel.WorkbookResource.getWorkbook;
 import static bad.robot.excel.column.ExcelColumnIndex.A;
 import static bad.robot.excel.sheet.Coordinate.coordinate;
-import static bad.robot.excel.style.Colour.*;
+import static bad.robot.excel.style.Color.*;
 import static bad.robot.excel.style.Fill.fill;
 import static bad.robot.excel.style.FontColour.fontColour;
 import static bad.robot.excel.style.FontSize.fontSize;
 import static bad.robot.excel.style.ForegroundColour.foregroundColour;
 import static bad.robot.excel.style.StyleBuilder.aStyle;
 
-public class ColourTest {
+public class ColorTest {
 
     @Test
     public void exampleUsage() throws IOException {

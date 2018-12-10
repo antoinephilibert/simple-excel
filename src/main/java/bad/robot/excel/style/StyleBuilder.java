@@ -16,12 +16,13 @@
 
 package bad.robot.excel.style;
 
-import bad.robot.excel.cell.DataFormat;
+import static bad.robot.excel.style.FontColour.fontColour;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Workbook;
+import static bad.robot.excel.style.Color.*;
 
-import static bad.robot.excel.style.Colour.Black;
-import static bad.robot.excel.style.FontColour.fontColour;
+import bad.robot.excel.cell.DataFormat;
 
 public class StyleBuilder implements Style {
 
@@ -31,6 +32,9 @@ public class StyleBuilder implements Style {
     private Border border;
     private Fill fill;
     private FontColour fontColour = fontColour(Black);
+    private boolean bold = false;
+    private boolean italic = false;
+    private int indent = 0;
 
     private StyleBuilder() {
     }
@@ -68,9 +72,25 @@ public class StyleBuilder implements Style {
         this.fill = fill;
         return this;
     }
+    
+    public StyleBuilder bold() {
+       this.bold = true;
+       return this;
+    }
 
+    public StyleBuilder italic() {
+       this.italic = true;
+       return this;
+    }
+
+    public StyleBuilder indent(int indent) {
+       this.indent = indent;
+       return this;
+    }
+
+    
     private ReplaceExistingStyle build() {
-        return new ReplaceExistingStyle(border, format, alignment, fontSize, fontColour, fill);
+        return new ReplaceExistingStyle(border, format, alignment, fontSize, fontColour, bold, italic, indent, fill);
     }
 
     @Override

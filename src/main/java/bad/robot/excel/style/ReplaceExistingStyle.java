@@ -17,12 +17,15 @@
 package bad.robot.excel.style;
 
 import bad.robot.excel.cell.DataFormat;
+
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import static bad.robot.excel.style.ClonedStyleFactory.newStyleBasedOn;
 import static org.apache.poi.ss.usermodel.CellStyle.SOLID_FOREGROUND;
+
+import org.apache.poi.hssf.util.HSSFColor;
 
 public class ReplaceExistingStyle implements Style {
 
@@ -32,17 +35,23 @@ public class ReplaceExistingStyle implements Style {
     private final FontColour fontColour;
     private final Fill fill;
     private final Border border;
+    private final boolean bold;
+    private final boolean italic;
+    private final int indent;
 
     /**
      * package protected. use {@link bad.robot.excel.style.StyleBuilder} instead
      */
-    ReplaceExistingStyle(Border border, DataFormat format, Alignment alignment, FontSize fontSize, FontColour fontColour, Fill fill) {
+    ReplaceExistingStyle(Border border, DataFormat format, Alignment alignment, FontSize fontSize, FontColour fontColour, boolean bold, boolean italic, int indent, Fill fill) {
         this.border = border;
         this.format = format;
         this.alignment = alignment;
         this.fontSize = fontSize;
         this.fontColour = fontColour;
         this.fill = fill;
+        this.bold = bold;
+        this.italic = italic;
+        this.indent = indent;
     }
 
     @Override
@@ -83,7 +92,24 @@ public class ReplaceExistingStyle implements Style {
     }
 
     private void applyFontTo(CellStyle style, Workbook workbook) {
-        if (fontSize != null) {
+       Font font = workbook.createFont();
+       font.setColor(fontColour.value().getPoiStyle());
+       font.setBold(bold);
+       font.setItalic(italic);
+       
+       if (fontSize != null)
+          font.setFontHeightInPoints(fontSize.value());
+       
+       style.setFont(font);
+       
+       if (indent > 0)
+          style.setIndention((short)indent);
+       
+      // System.out.println(font.getIndex());
+       
+       //workbook.getFontAt((short)1);
+       
+       /*if (fontSize != null) {
             Font font = workbook.createFont();
             font.setFontHeightInPoints(fontSize.value());
             font.setColor(fontColour.value().getPoiStyle());
@@ -93,6 +119,6 @@ public class ReplaceExistingStyle implements Style {
             Font existing = workbook.getFontAt(style.getFontIndex());
             existing.setColor(fontColour.value().getPoiStyle());
             style.setFont(existing);
-        }
+        }*/
     }
 }

@@ -18,13 +18,13 @@ package bad.robot.excel.style;
 
 import bad.robot.excel.AbstractValueType;
 
-public class ForegroundColour extends AbstractValueType<Colour> {
+public class ForegroundColour extends AbstractValueType<Color> {
 
-    public static ForegroundColour foregroundColour(Colour value) {
+    public static ForegroundColour foregroundColour(Color value) {
         return new ForegroundColour(value);
     }
 
-    private ForegroundColour(Colour value) {
+    private ForegroundColour(Color value) {
         super(value);
     }
 }

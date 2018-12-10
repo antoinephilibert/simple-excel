@@ -20,7 +20,7 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 
 import static org.apache.poi.ss.usermodel.IndexedColors.*;
 
-public enum Colour {
+public enum Color {
 
     Brown(BROWN),
     Blue(LIGHT_BLUE),
@@ -48,7 +48,7 @@ public enum Colour {
 
     private final IndexedColors color;
 
-    Colour(IndexedColors color) {
+    Color(IndexedColors color) {
         this.color = color;
     }
 
